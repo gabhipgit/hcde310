@@ -4,7 +4,7 @@
 
 Paste every prompt you sent, in order, with the AI's replies. A share link to the chat is fine too, but paste the prompts here either way. Your thinking about it goes in `day1.md`.
 
-**Share link (optional):**
+**Share link (optional): https://claude.ai/share/017bc609-be51-452b-88e9-48aa9d8f6b98**
 
 ### Prompt 1
 

@@ -12,7 +12,7 @@ Write your own, even if you worked in a pair. Keep it: we come back to it at mid
 It's for _university students, majoring in art__ who want to _find art inspo for their assignments__.
 
 **"The user can..." sentences:**
-1. THe user can search and filter to find specific pieces
+1. The user can search and filter to find specific pieces
 2. The user can save pieces they like to view at later
 
 ### 2. Our sketch
