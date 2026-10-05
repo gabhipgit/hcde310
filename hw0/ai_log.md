@@ -9,7 +9,7 @@ Paste every prompt you sent, in order, with the AI's replies. A share link to th
 ### Prompt 1
 
 ```
-Build a single-page interactive web app. It calls the Art Institute of Chicago API (https://api.artic.edu/api/v1/artworks/search) when the user searches or filters, and shows results with images. Keep it under ~150 lines. It's for students @ UW at who was design major. who want to look for Inso for their art assignment. My sketch is attached; follow it. Explain how the code works in plain language, section by section.
+Build a single-page interactive web app. It calls the Art Institute of Chicago API (https://api.artic.edu/api/v1/artworks/search) when the user searches or filters, and shows results with images. Keep it under ~150 lines. It's for students @ UW at who was design major. who want to look for Inso for their art assignment. My sketch is attached; follow it. Explain how the code works in plain language, section by section..
 ```
 
 **AI's reply:**

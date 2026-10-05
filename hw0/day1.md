@@ -35,7 +35,7 @@ Put the screenshot in this `hw0` folder, then change the filename below to match
 
 ### 5. Sketch vs. app
 
-- **Matches our sketch: Between the sketch and the app, the search bar, filter, and artwork locations match**
+- **Matches our sketch: Between the sketch and the app, the search bar, filter, and artwork locations match.**
 
 - **Different from our sketch: Something that different is the filter catagories are not in a round block. Also there aren't enough category options to scroll those options horizontally.**
 
