@@ -15,12 +15,29 @@ exhibits = [
 
 count = 0
 for e in exhibits:
-    print(f"{count +1}.",{e} )
+    print(f"{count+1}. {e}") 
     count = count + 1
 
 # 2. Print a blank line, then each exhibit in ALL CAPS followed by its length:   PAPER CUTS 10
+print()
+for e in exhibits:
+    print(e.upper(), len(e))
+   
+
+
 
 # 3. Print a blank line, then how many exhibit names contain the word "the" (any case):   With "the": 3
+print()
+countThe = 0
+for e in exhibits:
+    if("The" in e ):
+        countThe = countThe +1
+    if("the" in e):
+        countThe = countThe+1
+
+print('With "the":', countThe)
+
+
 
 # BONUS (optional): Python has a built-in function, enumerate(), that numbers items for you.
 # Rewrite your code for #1 so it uses enumerate() instead of adding 1 each time.
