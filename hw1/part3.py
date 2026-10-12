@@ -30,4 +30,4 @@ for title in titles:
 
 print()
 print(f"Old: {old}")
-print(f"Modern: {modern}")
+print(f"Modern: {modern}") #are we just being graded on if the code matches, or the syntax too? like reducing amt of redundant code?
