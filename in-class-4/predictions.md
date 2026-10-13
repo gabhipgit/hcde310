@@ -74,9 +74,15 @@ Pick one snippet. Write your guess first, then ask your tutor. Paste the chat (o
 # Snippet 1
 exhibit = {"title": "Water Lilies", "room": 243, "year": 1906}
 print("Find it in room " + exhibit["Room"])
+<<<<<<< HEAD
 
 - Our guess before asking: it's probably going to point out the error as a key error. It will also probably encourage me to see what key's I have and double check it's the key that I want. 
 
 - Chat: https://claude.ai/share/0634f51b-9417-4410-9a27-9e540908bdeb
 
 - Did it give you too much? What did you do? It really talked me through all the issues, making me preict, and say what I learned back to it in my own words. It even caught a double quotes error that still ran, but improved syntax. In my opinion it was doing a lot for right now, but I can see how as the concepts increase in difficulty for AI to be a useful tutor tool, especially when getting stuck while coding later in the night
+=======
+- Our guess before asking: it's probably going to point out the error as a key error. It will also probably encourage me to see what key's I have and double check it's the key that I want. 
+- Chat: https://claude.ai/share/0634f51b-9417-4410-9a27-9e540908bdeb
+- Did it give you too much? What did you do? It really talked me through all the issues, making me preict, and say what I learned back to it in my own words. It even caught a double quotes error that still ran, but improved syntax. In my opinion it was doing a lot for right now, but I can see how as the concepts increase in difficulty for AI to be a useful tutor tool. 
+>>>>>>> 8b0ab04bd0ca4d81d015f29f0b472000aa28a365
