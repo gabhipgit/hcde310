@@ -1,0 +1,51 @@
+import json
+with open("aic_sample.json") as f:
+    data = json.load(f) #loads f into variable called data
+
+results = data["data"] #gets things in "data" key from aic_sample.json
+#print(results)
+
+first = results[0]
+print(first)
+
+print(type(data))
+results = data["data"]
+print(type(results))
+
+firstTitle = data ["data"][0]["title"] #how to narrow down on specific info 
+print(firstTitle)
+
+#total results 
+print(data["pagination"]["total"])
+
+#second result title
+SecondTitle = data ["data"][1]["title"]
+print(SecondTitle)
+
+#first result artist
+firstArtist = data ["data"][0]["artist_title"]
+print(firstArtist)
+
+#image_id
+SecondID = data ["data"][1]["image_id"]
+print(SecondID)
+
+#null fields
+print(data["data"][2]["artist_title"])
+if print(data["data"][0]["artist_title"]) == None:
+    print("Unknown Artist")
+
+
+art = data["data"][2]
+print("By " + art["artist_title"])
+
+if art["artist_title"]:
+    print("by" + art["artist_title"])
+else:
+    print("No artist found")
+
+url = "https://api.artic.edu/api/v1/artworks/search"
+import requests
+r = requests.get(url, params={"q": "cats"})
+if r.status_code == 200:
+    data = r.json()
