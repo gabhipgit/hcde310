@@ -5,3 +5,8 @@
 
 from artworks import artworks
 
+for art in artworks:
+    title = art.get("title", "Unknown")
+    artist = art.get("artist", "Unknown")
+    year = art.get("year", "Unknown")
+    print(f'{title} - {artist} ({year})')
