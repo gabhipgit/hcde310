@@ -13,14 +13,26 @@ from artworks import artworks
 
 
 def works_by(artist, artworks):
-    """TODO: one line saying what it takes and what it returns."""
+    """TODO: one line saying what it takes and what it returns.This function takrs in an artist name, and the artworks """
     pass
+    artistList = []
+    for art in artworks:
+        title = art.get("title", "Unknown")
+        painter = art.get("artist", "Unknown")
+        if painter == artist:
+            artistList.append(title)
+    return(artistList)
+#.append(value) is how to add to a list in Python
+
 
 
 def count_by_artist(artworks):
     """TODO: one line saying what it takes and what it returns."""
     pass
-
+    diction = {}
+    for art in artworks:
+        diction[art.get("artist", "Unknown")] = diction.get(art.get("artist", "Unknown"), 0) + 1
+    return(diction)
 
 print(works_by("Claude Monet", artworks))
 print(works_by("Nobody", artworks))
