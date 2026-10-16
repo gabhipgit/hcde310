@@ -10,3 +10,5 @@ for art in artworks:
     artist = art.get("artist", "Unknown")
     year = art.get("year", "Unknown")
     print(f'{title} - {artist} ({year})')
+
+#.get("key", "Unknown") lets you check a dictionary for a key, and if the mentioned key is not there, will default it's value to "Unknown"

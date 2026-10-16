@@ -10,3 +10,18 @@
 
 from artworks import artworks
 
+dict = {}
+mostCount = 0
+mostArt = ""
+
+for art in artworks:
+    dict[art.get("artist", "Unknown")] = dict.get(art.get("artist", "Unknown"), 0) + 1
+    if dict.get(art.get("artist", "Unknown"), 0) > mostCount:
+        mostCount = dict.get(art.get("artist", "Unknown"))
+        mostArt = art.get("artist", "Unknown")
+    
+print(dict)
+print (f'Most works: {mostArt} ({mostCount})')
+
+
+
