@@ -13,7 +13,7 @@ from artworks import artworks
 
 
 def works_by(artist, artworks):
-    """TODO: one line saying what it takes and what it returns.This function takrs in an artist name, and the artworks """
+    """This function takes in the name of an artist, and returns a list of all the titles in artworks created by that artist."""
     pass
     artistList = []
     for art in artworks:
@@ -27,7 +27,7 @@ def works_by(artist, artworks):
 
 
 def count_by_artist(artworks):
-    """TODO: one line saying what it takes and what it returns."""
+    """This function takes into account all the art in artworks then returns a dictionary keeping track of how many art pieces each artist has."""
     pass
     diction = {}
     for art in artworks:
