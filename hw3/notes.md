@@ -7,8 +7,7 @@ Open `sample_response.json` (a saved Art Institute of Chicago search). In `notes
 ---
 
 ## 1. The total number of results is at `data["pagination"]["total"]`. What's the path to the first artwork's title?
-data["data"][0]["title"] SLACK THIS LATER!! TO CONFIRM THAT AI TUTOR IS TELLING ME CORRECTLY
-
+data["data"][0]["title"] 
 
 ## 2. Find 3 more fields you'd want to show a user, and their paths
 1. field: alt-text for the first artwork
