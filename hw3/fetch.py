@@ -4,7 +4,7 @@
 
 import requests
 
-FIELDS = "id,title,artist_title,artist_display,date_display"
+FIELDS = "id,title,artist_title,artist_display,date_display,artwork_type_title,place_of_origin"
 
 # Functions go here (above the code that runs)
 def count_by_artist(data):
@@ -14,6 +14,15 @@ def count_by_artist(data):
     for art in data:
         diction[art.get("artist_title", "Unknown") or "Unknown"] = diction.get(art.get("artist_title", "Unknown"), 0) + 1
     return(diction)
+
+# AI-writtenp
+def save_results(artworks, filename):
+    """Takes a list of artwork dictionaries and a filename; returns the filename after writing one line per artwork."""
+    with open(filename, "w") as file:
+        for art in artworks:
+            line = f"{art['title'] or "Unknown"} - {art['artist_title'] or "Unknown"} ({art['date_display'] or "Unknown"}) - {art['artwork_type_title'] or "Unknown"} - {art['place_of_origin'] or "Unknown"}"
+            file.write(line + "\n")
+    return filename
 
 term = input("Search the Art Institute for: ")
 
@@ -44,5 +53,9 @@ else:
             #this line first checks gets art's "title" value. if there is no "title key, it creates one and assigns the value "Unknown". If the key is there, but the value is null, the "or Unknown" gets set to "Unknown"
             artist = art.get("artist_title", "Unknown") or "Unknown"
             year = art.get("date_display", "Unknown") or "Unknown"
-            print(f'{title} - {artist} ({year})')
+            type = art.get("artwork_type_title", "Unknown") or "Unknown"
+            place = art.get("place_of_origin", "Unknown") or "Unknown"
+
+            print(f'{title} - {artist} ({year}) - {type} - {place}')
         print(count_by_artist(data["data"]))
+        print(save_results(data["data"], "art.txt" ))
