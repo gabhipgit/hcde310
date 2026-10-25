@@ -7,7 +7,13 @@ import requests
 FIELDS = "id,title,artist_title,artist_display,date_display"
 
 # Functions go here (above the code that runs)
-
+def count_by_artist(data):
+    """This function takes into account all the art in artworks then returns a dictionary keeping track of how many art pieces each artist has."""
+    pass
+    diction = {}
+    for art in data:
+        diction[art.get("artist_title", "Unknown") or "Unknown"] = diction.get(art.get("artist_title", "Unknown"), 0) + 1
+    return(diction)
 
 term = input("Search the Art Institute for: ")
 
@@ -39,5 +45,4 @@ else:
             artist = art.get("artist_title", "Unknown") or "Unknown"
             year = art.get("date_display", "Unknown") or "Unknown"
             print(f'{title} - {artist} ({year})')
-
- 
+        print(count_by_artist(data["data"]))
