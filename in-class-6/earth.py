@@ -23,14 +23,37 @@ print(key is None)
 r = requests.get("https://api.nasa.gov/EPIC/api/natural", #gets the api
 params={"api_key": key}, timeout=10) # gives key so NASA accepts, then gives up after 10 s
 
-if r.status_code == 200: #if status of code works
-    print(r.json()[0]["caption"]) #(r in json form so it's in list form, take index 0) print out caption of today's first photo of the whole Earth
-    print(r.json()[0]["date"]) #prints out todays first photo of whole earth's date
+# if r.status_code == 200: #if status of code works
+#     print(r.json()[0]["caption"]) #(r in json form so it's in list form, take index 0) print out caption of today's first photo of the whole Earth
+#     print(r.json()[0]["date"]) #prints out todays first photo of whole earth's date
 
-    #alt code to combine both print statements
-    #photo = r.json()[0]
-    #print(photo["caption"], photo["date"])
+#     #alt code to combine both print statements
+#     #photo = r.json()[0]
+#     #print(photo["caption"], photo["date"])
 
-else:
-    print("Request failed:", r.status_code, r.reason) # 403 = bad or missing key
+# else:
+#     print("Request failed:", r.status_code, r.reason) # 403 = bad or missing key
 
+# def newest_photo(photos):
+#     count = 0
+#     for photo in photos:
+#         count = count+1
+#     print(r.json()[count]["date"])
+
+# print(newest_photo(photos))
+
+# AI-written
+def newest_photo(photos):
+    """Takes a list of photo dictionaries and returns the latest 'date' string."""
+    newest = photos[0]["date"]
+    for photo in photos:
+        if photo["date"] > newest:
+            newest = photo["date"]
+    return newest
+
+test = [
+    {"date": "2026-10-20 03:12:00"},
+    {"date": "2026-10-20 18:45:00"},
+    {"date": "2026-10-20 09:30:00"},
+]
+print(newest_photo(test))
