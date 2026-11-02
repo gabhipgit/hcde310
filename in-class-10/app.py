@@ -15,7 +15,7 @@ def home():
 @app.route("/results")
 def results():
     # 1. Read the search term from the form
-    author = request.args.get("author_search", "")
+    author = request.args.get("author_search", "").strip()
 
     # 2. Empty input? → home page + message (check BEFORE calling the API)
     if author == "":
@@ -23,8 +23,11 @@ def results():
 
     # 3. Call the API (fake data for now)
     books = get_books_real(author)
+    #books = None
 
     # 4. API error? (get_books returned None) → home page + message
+    if books is None:
+        return render_template("home.html", message="API Error- Books Not Found")
 
     # 5. No results, or nothing useful to show? → home page + message
 
