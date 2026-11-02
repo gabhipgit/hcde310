@@ -30,6 +30,7 @@ def results():
         return render_template("home.html", message="API Error- Books Not Found")
 
     # 5. No results, or nothing useful to show? → home page + message
-
+    if books == 0:
+        return render_template("resuts.html", message="No Results found.")
     # 6. Otherwise → results page
     return render_template("results.html", books=books, author=author)

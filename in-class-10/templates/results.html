@@ -3,6 +3,11 @@
 <head><title>Books by {{ author }}</title></head>
 <body>
   <h1>Books by {{ author }}</h1>
+
+  {% if message %}
+    <p>{{ message }}</p>
+  {% endif %}
+
   <ul>
   {% for book in books %}
     <li>{{ book.title }}</li>
