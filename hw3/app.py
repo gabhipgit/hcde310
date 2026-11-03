@@ -36,16 +36,18 @@ def arts():
 
     # 3. Call the API (fake data for now)
     #arts = find_art_FAKE(title)
-    arts = None
+    #arts = None
+    #arts=[]
 
-    # 4. API error? (get_books returned None) → home page + message
+    # 4. API error? (get_books returned None) → arts/results page + message
     if arts is None:
-        return render_template("arts.html", message="API Error: Search won't work")
+        return render_template("arts.html", title=title, message="API Error: Search won't work")
 
 
-    # 5. No results, or nothing useful to show? → home page + message
+    # 5. No results, or nothing useful to show? → arts/results page + message
     if len(arts) == 0:
-        return render_template("arts.html", message="No Results found.")
+        return render_template("arts.html", title=title, message="No results found for inputted search.")
+    
     # 6. Otherwise → results page
     return render_template("arts.html", arts=arts, title=title)
 
