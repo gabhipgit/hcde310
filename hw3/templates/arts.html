@@ -1,0 +1,25 @@
+<!-- templates/arts.html
+<form action="/" method="get">
+   <label for="title">Search</label>
+   <input id="title" name="title_search">
+   <button type="submit">Find art</button>
+</form> -->
+
+<!doctype html>
+<html lang="en">
+<head><title>Art called {{ title }}</title></head>
+<body>
+  <h1>Art called {{ title }}</h1>
+
+  {% if message %}
+    <p>{{ message }}</p>
+  {% endif %}
+
+  <ul>
+  {% for art in arts %}
+    <li>{{ art.title }}</li>
+  {% endfor %}
+  </ul>
+  <a href="/">New search</a>
+</body>
+</html>
