@@ -13,8 +13,8 @@ FAKE_EMPTY = []                                           # no results
 
 FAKE_MISSING_FIELDS = [
     {"title": "Cat Fake Art One", "artist_title": "van gough"},
-    {"title": "Cathy Fake Art Two"},                           # no year
-    {"title": None, "artist_title": "monet money"},          # title is there, but null
+    {"title": "Cathy Fake Art Two"},                           # no artist
+    {"title": None, "artist_title": "abad" },          # title is there, but null
     {"artist_title": "dr seuss"},                         # no title at all
 ]
 
@@ -23,16 +23,28 @@ FAKE_ERROR = None                                         # what get_books_real(
 # Change this line to try a different case
 FAKE_DATA = FAKE_ARTS
 
+# AI-written
+def clean_arts(arts):
+    """Takes a list of artwork dictionaries and returns a new list with artist-less items dropped and missing titles set to "Unknown"."""
+    cleaned = []
+    for art in arts:
+        if art.get("artist_title"):
+            new_art = dict(art)
+            if not new_art.get("title"):
+                new_art["title"] = "Unknown"
+            cleaned.append(new_art)
+    return cleaned
 
-def find_art_FAKE(title):
+
+def find_art_FAKE(artist_title):
     # Fake for now. When the path works, switch app.py to get_books_real().
     return FAKE_DATA
 
 #This function gets the data from the API
-def find_art(title):
+def find_art(artist_title):
    FIELDS = "image_id,title,artist_title" #date_display,artwork_type_title,place_of_origin"
    #title = input("Search the Art Institute for: ")
-   params = {"fields":FIELDS, "title": title}
+   params = {"fields":FIELDS, "artist_title": artist_title}
    headers = {"AIC-User-Agent": "HCDE310 student project HW4"}
    r = requests.get("https://api.artic.edu/api/v1/artworks/search", params=params, headers=headers)
    if r.status_code != 200:

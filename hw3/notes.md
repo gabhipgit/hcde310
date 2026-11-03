@@ -10,8 +10,8 @@ Open `sample_response.json` (a saved Art Institute of Chicago search). In `notes
 data["data"][0]["title"] 
 
 ## 2. Find 3 more fields you'd want to show a user, and their paths
-1. field: alt-text for the first artwork
-data["data"][0]["thumbnail"]["alt_text]
+1. field: place of origin for the first artwork
+data["data"][0]["place_of_origin"]
 
 2. field: artwork_type_title for the first artwork
 data["data"][0]["artwork_type_title"]

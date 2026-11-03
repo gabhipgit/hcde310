@@ -1,7 +1,7 @@
 ![sketch of Search page and Results page](image.png)
 
 DATA NEEDED:
-Fields: title, artist_title, image_id, date_display, artwork_type_title, place_of_origin
+Fields: title, artist_title
 
 SPEC PIECES: 
 
@@ -12,7 +12,7 @@ Route for "/"
         1. (normal state) "cat" -> goes to results page
         2. empty input -> "enter input" message appears on home page 
 
-Route for "/results"
+Route for "/arts"
     input: user inputs title, and clicks search (app.py in use)
     output: results page (results.html); a list of artworks with their corresponding details is shown (happy path)
     output 2: results page with "no works found" message (no results)

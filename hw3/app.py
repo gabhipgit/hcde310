@@ -4,7 +4,7 @@
 #app.py  
 # --- app.py --- 
 from flask import Flask, render_template, request 
-from api import find_art_FAKE 
+from api import find_art_FAKE, clean_arts
 
 app = Flask(__name__) #
 
@@ -28,28 +28,28 @@ def home():
 @app.route("/arts")
 def arts():
     # 1. Read the search term from the form
-    title = request.args.get("title_search", "").strip()
+    artist_title = request.args.get("artist_title_search", "").strip()
 
     # 2. Empty input? → home page + message (check BEFORE calling the API)
-    if title == "":
+    if artist_title == "":
         return render_template("home.html", message="Enter a search first to Find Art.")
 
     # 3. Call the API (fake data for now)
-    #arts = find_art_FAKE(title)
+    arts = clean_arts(find_art_FAKE(artist_title))
     #arts = None
     #arts=[]
 
     # 4. API error? (get_books returned None) → arts/results page + message
     if arts is None:
-        return render_template("arts.html", title=title, message="API Error: Search won't work")
+        return render_template("arts.html", artist_title=artist_title, message="API Error: Search won't work")
 
 
     # 5. No results, or nothing useful to show? → arts/results page + message
     if len(arts) == 0:
-        return render_template("arts.html", title=title, message="No results found for inputted search.")
+        return render_template("arts.html", artist_title=artist_title, message="No results found for inputted search.")
     
     # 6. Otherwise → results page
-    return render_template("arts.html", arts=arts, title=title)
+    return render_template("arts.html", arts=arts, artist_title=artist_title)
 
 
 
