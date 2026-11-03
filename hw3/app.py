@@ -40,8 +40,8 @@ def arts():
 
     # 4. API error? (get_books returned None) → home page + message
     if arts is None:
-        return render_template("home.html", message="API Error:" + request.status_code + request.reason)
-    #"API error:", r.status_code, r.reason
+        return render_template("arts.html", message="API Error: Search won't work")
+
 
     # 5. No results, or nothing useful to show? → home page + message
     if len(arts) == 0:
