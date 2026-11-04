@@ -4,62 +4,51 @@
 #app.py  
 # --- app.py --- 
 from flask import Flask, render_template, request 
-from api import find_art_FAKE, clean_arts
+from api import find_art, clean_arts, keep_relevant
 
 app = Flask(__name__) #
 
 #Home page/main search page
-#This should be the search page, the user can type in input, and once 'search' is clicked, it should move to the results page
-#If an empty search, it should prompt the user to enter input
-#If search yeilds no result, it should still go to results page (but show error message)
+#This should open to the home page, the user can "find art" by typing in an artist's name, 
+#once 'find art' button is clicked, it should move to the results page
 
 @app.route("/")
 def home():
     return render_template("home.html")
 
 
-#arts page
-#takes the "title" input from home page
-#uses find_art("title") to get results and displays image, title, artist, year, type, and place
-#if user imputs title with no results, displays error message "no works found"
-#if api not found/broken, no results with error message "broken request: status code + reason"
-#if fields missing for an art piece, set value to unknown
+#Results page
+#takes the input from home page
+#displays titles of art pieces associated with entered artist (happy state)
+#if an empty search state, it should stay on home page and prompt the user to enter input 
+#if user imputs search with no related art (no results state), it should go to results page and display error message "No results found for inputted search."
+#if api not found/broken state, go to results page with error message "API Error: Search won't work"
+#if missing fields state, take out any arts with missing artist values. Any arts with a known artist, but missing title get a default title of "Unknown Title" 
 
-@app.route("/arts")
+@app.route("/results")
 def arts():
-    # 1. Read the search term from the form
+    # 1. Read the search term from the home form
     artist_title = request.args.get("artist_title_search", "").strip()
 
-    # 2. Empty input? → home page + message (check BEFORE calling the API)
+    # 2. Empty input state: home page + message 
     if artist_title == "":
         return render_template("home.html", message="Enter a search first to Find Art.")
 
-    # 3. Call the API (fake data for now)
-    arts = clean_arts(find_art_FAKE(artist_title))
-    #arts = None
-    #arts=[]
+    # 3. Call the API 
+    arts = keep_relevant(clean_arts(find_art(artist_title)), artist_title)
 
-    # 4. API error? (get_books returned None) → arts/results page + message
+    # 4. API error state: results page + message
     if arts is None:
-        return render_template("arts.html", artist_title=artist_title, message="API Error: Search won't work")
+        return render_template("results.html", artist_title=artist_title, message="API Error: Search won't work")
 
-
-    # 5. No results, or nothing useful to show? → arts/results page + message
+    # 5. No results state: results page + message
     if len(arts) == 0:
-        return render_template("arts.html", artist_title=artist_title, message="No results found for inputted search.")
-    
-    # 6. Otherwise → results page
-    return render_template("arts.html", arts=arts, artist_title=artist_title)
+        return render_template("results.html", artist_title=artist_title, message="No results found for inputted search.")
+  
+    # 6. Happy state: results page
+    return render_template("results.html", arts=arts, artist_title=artist_title)
 
-
-
-
-
-#results page
-#This should display artworks and their details (title, artist, year, origin) that match the users search. 
-#There should be a magnifying glass on the page, that when clicked takes user back to search page
-#There should be an 'Artist Results' component on the top right of the page, showing artist count on current displayed pieces
-#Clicking on an artwork, should increase img, as well as their details
-#Save button that when clicked, saves all the artworks being displayed in list form. 
-
-                          
+    # 7. Missing field state: 
+    #   this is handled in the api.py file through clean_arts(arts) function. Any arts with null or missing artist_title's get excluded from results
+    #   and any art titles that are null or missing get a value of "Unknown Title", if they have usable artist_title
+                      
