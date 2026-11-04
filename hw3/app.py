@@ -14,7 +14,7 @@ app = Flask(__name__) #
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template("home.html") #says whenever "/" open the home page (home.html)
 
 
 #Results page
@@ -28,25 +28,32 @@ def home():
 @app.route("/results")
 def arts():
     # 1. Read the search term from the home form
-    artist_title = request.args.get("artist_title_search", "").strip()
+    artist_title = request.args.get("artist_title_search", "").strip() #gets the user inputted results from home
 
     # 2. Empty input state: home page + message 
     if artist_title == "":
-        return render_template("home.html", message="Enter a search first to Find Art.")
+        return render_template("home.html", message="Enter a search first to Find Art.") 
+    #if empty search, keep on home page, but shows a helpful message
 
     # 3. Call the API 
-    arts = keep_relevant(clean_arts(find_art(artist_title)), artist_title)
+    arts = keep_relevant(clean_arts(find_art(artist_title)), artist_title) 
+    #gets art piece titles from API that is relevant with inputted artist. (find_art and keep_rele)
+    #makes sure missing fields in returned arts are accounted for. (no missing artist_title, and any unknown titles become "Unknown Title")
+
 
     # 4. API error state: results page + message
     if arts is None:
         return render_template("results.html", artist_title=artist_title, message="API Error: Search won't work")
+    #if api error, keeps on results page, but shows helpful message
 
     # 5. No results state: results page + message
     if len(arts) == 0:
         return render_template("results.html", artist_title=artist_title, message="No results found for inputted search.")
+    #if no results because of inputted search, stays on results, but shows relevant message 
   
     # 6. Happy state: results page
     return render_template("results.html", arts=arts, artist_title=artist_title)
+    #if all goes well with inputted search, show relevant results on result page.
 
     # 7. Missing field state: 
     #   this is handled in the api.py file through clean_arts(arts) function. Any arts with null or missing artist_title's get excluded from results

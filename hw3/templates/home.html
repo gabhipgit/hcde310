@@ -1,3 +1,5 @@
+<!-- home page, allows users to input an artist, and shows message for unhappy states. 
+Users inout gets saved and moved to /results as long as input is not empty -->
 <!doctype html>
 <html lang="en">
 <head><title>Art search</title></head>
@@ -10,7 +12,8 @@
 
   <form action="/results" method="get">
     <label for="artist_title">Artist</label>
-    <input id="artist_title" name="artist_title_search">
+    <input id="artist_title" name="artist_title_search"> 
+    <!-- line above takes user input  -->
     <button type="submit">Find art</button>
   </form>
 </body>

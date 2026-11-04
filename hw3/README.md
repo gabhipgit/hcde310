@@ -85,3 +85,17 @@ Done early? Add `sort_by_date(artworks)` too (not graded).
 | 4 | Use or incorporate external resources (e.g., third party software libraries or APIs) into the designed systems. |
 | 5 | Apply basic computational thinking concepts and practices, including reading, debugging, and testing code. |
 | 8 | Use AI tools deliberately: verify their output, and explain what you built and what the AI did. |
+
+
+-------------------------------------------------------------------------------------------------------------------------
+# HW4: 
+
+## who it's for: 
+This app is for students (but really anyone) trying to find more art by a specific artist. 
+
+## how to run it: 
+entering "flask --app app run --debug" in the terminal will open flask, and give you a unique http url to let you open this app in your browser 
+
+## Screenshot of app 
+![the homepage of this app where user can input an artist and 'find art'](homepage.png)
+![results page where 10 artwork titles from user input (ex. monet) are listed ](resultspage.png)

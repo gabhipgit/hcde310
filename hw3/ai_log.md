@@ -68,3 +68,94 @@ I added the or "Unknown" to this line in the save_results method:
 line = f"{art['title'] or "Unknown"} - {art['artist_title'] or "Unknown"} ({art['date_display'] or "Unknown"}) - {art['artwork_type_title'] or "Unknown"} - {art['place_of_origin'] or "Unknown"}"
 
 This now means that when entering each art's details from artworks into a file, fields that have null values will be written as "Unknown" instead of "None". I changed it because I figured it would be good practice to make sure to be aware of null values and be able to manually change/re-word their values. 
+
+-------------------------------------------------------------------------------------------------------------------------
+# AI LOG FOR HW4
+
+I'm a Human Centered Design & Engineering student learning Python so I can prototype interactive apps. I follow a routine: Try → Predict → Run → Explain → Log.
+My attempt so far: [paste your code or plan, even if it doesn't work] Where I'm stuck: [one sentence] The function I need: [name]([inputs]) takes [what] and returns [what].
+Rules: - Write only this one function, about 10 lines or fewer. No other code, and don't change mine. - Put # AI-written on the line above the function. - Start the function with a one-line docstring that says what it takes and returns. - Use only what a beginner would know: loops, if, lists, dictionaries, and the libraries I'm already using. If you need something new, tell me its name and what it does in one line. - Don't explain the code yet. Ask me to predict what it returns for [one real input]. Wait for my prediction. - After I've run it and told you the result, ask me to explain each line in my own words. Correct anything I got wrong, then ask me about one line I skipped. - Then suggest one small change I could make myself (don't write it). Wait until I tell you what I changed. - Then ask me: what's one thing that surprised you? Don't answer it for me. - For anything other than this one function, act as my tutor: hints and questions, no code.
+
+Your message still has the template placeholders in it. The brackets for your attempt, where you’re stuck, and the function you need are all unfilled, so I don’t have anything to write yet. I don’t want to guess at a function and skip your “Try” step.
+
+Could you send me these three things?
+
+Your attempt so far: paste your code or your plan. A half-working attempt or a rough plan in plain words is fine.
+Where you’re stuck: one sentence.
+The function you need: its name, what it takes, and what it returns, like count_votes(votes) takes a list of strings and returns a dictionary of counts.
+
+It would also help to know which libraries you’re already using (for example, just plain Python, or something like tkinter, streamlit, or pandas), so I stay inside what you know.
+
+Once I have those, I’ll write just the one function, short and marked # AI-written, and then ask you for a prediction before explaining anything.
+
+headers = {"User-Agent": "HCDE310 class demo"} 
+this line is an example from class, what does it mean
+
+Let’s take it apart piece by piece instead of me just telling you.
+
+Piece 1: the shape. Look at the curly braces and the colon inside them. You’ve seen this structure when learning Python. What is it called, and what’s on the left of the colon versus the right? What is headers in relation to that?
+
+Piece 2: the words. A hint for “User-Agent”: whenever a program asks a website for a page, it sends a little bundle of information along with the request, like a label on a package. That label is called a header. “User-Agent” is one standard label name, and its job is to say who or what is making the request.
+
+Piece 3: the why. Think about your own experience. When you open a page in a browser, the website knows whether you’re on a phone or a laptop, in Chrome or Safari. Now picture a Python script asking for that same page. What would the website see if your script didn’t say anything about itself? Why might a website owner care to know who’s asking, especially if a script is making hundreds of requests?
+
+Piece 4: the connection. The string “HCDE310 class demo” is the value. Why might it be helpful to put your class name there rather than something generic?
+
+A few things to try:
+
+Answer Pieces 1 and 3 in your own words, even if you’re unsure.
+Look at the class example this line came from. Where does headers show up again after it’s created? That will tell you what it’s used for.
+
+What do you think it does, based on those clues?
+
+import requests
+
+FIELDS = "id,title,artist_title,artist_display,date_display,artwork_type_title,place_of_origin"
+#term = input("Search the Art Institute for: ")
+
+  
+headers = {"AIC-User-Agent": "HCDE310 student project"}
+def find_art(term):
+   params = {"fields":FIELDS, "term": term} 
+   r = requests.get("https://api.artic.edu/api/v1/artworks/search", params=params, headers=headers)
+   return r.json()["data"][:10]
+
+I don't see headers anwhere else past the r = line
+
+Glad it works. Here’s the function again, so you can go line by line.
+
+python
+# AI-written
+def keep_relevant(arts, term):
+    """Takes a list of artwork dictionaries and a search word, returns only those whose title or artist contains the word."""
+    kept = []
+    for art in arts:
+        text = (art.get("title") or "") + " " + (art.get("artist_title") or "")
+        if term.lower() in text.lower():
+            kept.append(art)
+    return kept
+
+Describe each line in your own words, and say “not sure” where you’re unsure and guess. A few spots to think about:
+
+What are kept and text at the start and end of each trip through the loop?
+What does art.get("title") or "" do when the title is missing or None? How does that compare to what you saw in clean_arts?
+Why is .lower() called on both term and text? What would change for “Monet” versus “monet” if it weren’t?
+What does in check in term.lower() in text.lower()?
+
+I’ll correct anything off, then ask about one line you skipped.
+
+for each art in arts list, it get's the art's artist and title. then it checks if term.lower or text.lower (which im unsure what that does). if it is lower though it adds the art to the kept list and returns kept after loop
+
+You’ve got the overall shape: loop through the artworks, keep the ones that pass a check, and return kept at the end. Here are the corrections.
+
+.lower() doesn’t check anything. It’s a string method that returns a lowercase copy, so "Claude Monet".lower() gives "claude monet". Try print("Monet".lower()) in a scratch file to see it. The word or also isn’t part of that if line.
+The check is in. Read the line as a question: is the lowercase search word found somewhere inside the lowercase text? If yes, the art goes into kept. If no, it’s skipped. Why do you think both sides get lowercased before the question is asked?
+text isn’t just “getting” the title and artist. That line builds one single string out of the two, so one in check can search both.
+
+A line you skipped: art.get("title") or "". Say what you think this does when the title is missing or None, and what would go wrong in the + part if it just used art.get("title") and the title were None. Also, what do you think the " " between the two pieces is for?
+
+Answer that, and then I’ll give you the next step.
+
+What surprised: I was surprised by how much I liked to explain my train of thought to the AI while stuck. Even when it didn't ask for it, I tried to always explain my reasoning. I guess it's like a mix between rubber duck coding, and talking through code problems with another person
+
+What changed: I ended up just changing my vs code to auto save because a lot of troubleshooting I went through with AI was a result of me just forgetting to save before running code again. 
