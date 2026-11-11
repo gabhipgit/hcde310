@@ -2,10 +2,11 @@
 
 ## 1. Drawing: one search for "Monet"
 (photo here)
+![Sketch of pathway when searching "Monet"](MonetSearch.png)
 
 ## 2. Two questions about the code
-1.
-2.
+1. In the "/results" route, how does try: and except: work? 
+2. How is try and except different from if and else, and how do you differenciate when's the best case to use each one?
 
 ## 3. Checks (4 or more, at least 2 as pytest tests)
 | # | Check | Pass or fail |
