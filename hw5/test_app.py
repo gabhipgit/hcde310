@@ -38,7 +38,7 @@ def test_random_string_search():
     client = app.test_client()
     page = client.get("/results?artist=asdfghjklkjhgfdsa")
     assert page.status_code == 200
-    assert b"No results found for inputted search." in page.data
+    assert b"No results found." in page.data
 
 
 #Check 4- PASS

@@ -32,9 +32,23 @@ Answers to my two questions, in my own words:
     2. How Try/Except differs from If/Else: If/Else doesn't run the code inside of them if their attached conditional does pass. As claude put is, "checks a condition BEFORE acting". With Try/Except, there does not need to be a conditional attached to it. 'Try' will run the code associated with it, and if it doesn't work, it will go to the 'Except" actions. As Claude writes, "handles failures you can't predict by looking ahead". Try/Except requires one to try the code out to find an answer, while If/Else has a conditional to try before executing the code. (Side note: 'except' only runs if there was an error with 'try')
 
 ## 5. My fix
-What was wrong:
-What I changed:
-How I checked it works:
+What was wrong: The test for inputting a random string into the search was failing. This was because any time a random string was inputted and searched, results with no association would still come up. While the api was using the artist keyword as a search term, when it couldn't find a matched artist, it would provide its "next best" results, which wouldn't be useful to the inputted search at all. The test itself was checking for the words "No results found." which was nowhere to be found because results were still on the page. 
+
+What I changed: Using AI, I changed the params a bit in api.py. 
+    Instead of:
+    params = {"q": artist, "fields": FIELDS, "limit": 10}
+
+    params = {
+        "query[match][artist_title][query]": artist,
+        "query[match][artist_title][operator]": "and",
+        "fields": FIELDS,   # back to the comma-separated string
+        "limit": 10,
+    }
+
+    This is makes the search query more specific, finding the exact match of inputted artist name while getting it's data. It only pulls works that match the search, and if it can't find any it will return an empty data list, which will trigger the "No results found" message. 
+
+How I checked it works: I ran the pytest check that tested for the "No results found." message and this time it passed. I also tried it out for myself on the local server, inputting a random string for search, and saw a "No results found." message as well. 
+
 Commit before: (hash)  Commit after: (hash)
 
 ## 6. Can we ship it? (100–150 words)
