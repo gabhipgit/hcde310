@@ -13,7 +13,7 @@
 |---|---|---|
 | 1 | Checks that valid searches shows a page with results | PASS |
 | 2 | Checks that empty searches should stay on home page, and include correct error message | PASS |
-| 3 | Checks that random string search inputs should have no results on result page, and include correct error | FAIL |
+| 3 | Checks that random string search inputs should have no results on result page, and include correct error | FAIL (Originally) |
 | 4 | Checks that only 10 results max are shown per search on results page | PASS |
 
 ## 4. AI review
