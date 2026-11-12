@@ -11,15 +11,25 @@
 ## 3. Checks (4 or more, at least 2 as pytest tests)
 | # | Check | Pass or fail |
 |---|---|---|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
+| 1 | Checks that valid searches shows a page with results | PASS |
+| 2 | Checks that empty searches should stay on home page, and include correct error message | PASS |
+| 3 | Checks that random string search inputs should have no results on result page, and include correct error | FAIL |
+| 4 | Checks that only 10 results max are shown per search on results page | PASS |
 
 ## 4. AI review
-What it found that I missed:
-What it got wrong:
+What it found that I missed: 
+    For security, the biggest problems pointed out were that the current debugger can allow remote code from outside the current machine, and should be debugged locally. The current exception message still gives a raw exception text to the user, and should instead change the {e} to a more generic message. It also reccommended putting a limit on the API upsteam calls, and using only Get insead of Post to avoid CSRF questions like "resubmit form" for every refresh. 
+    
+    For bugs and missing errors, the biggest problem brought up by ai was that "q=artist" is not limited to an artist only sketch- meaning that as long as an artist is mentioned in a description, that artwork will show up as a result, regardless if it was actually created by the searched artist. There's also some redundant code, and a lack of code handling timeout issues. It also pointed out the failed pytest check, where an empty result does not lead to a "No artworks found" message.
+
+    For accessibility, claude reccomended to check the template pages for accessibility problems. It said to make sure that images have alt-text, make sure messages have an "alert" role for screen readers to announce it, label "artist", page titles assigned for each html template, html language set to "en", use headings, and make sure link's are descriptive. 
+
+What it got wrong: 
+    There was nothing AI got super wrong when pointing out errors/corrections, but also some of it's suggestions seemed not nesseccary. For example, in the bugs and missing errors section, one of their suggestions was to return specific http status' instead of just providing a "Human" error message. However, I don't think that's an error. The messages given to the user is enough info for them to see their mistakes, try again, or understand the issue. I don't think implementing the specific https error status code will help any user trying to use this app or troubleshoot their mistakes- A human readable message would be more helpful for most instead of recieving a status code (like Claude suggested).
+
 Answers to my two questions, in my own words:
+    1. How Try and Except work: if 'Try' works, it executes the code inside of it. 'Try' attempts to run the code inside of it. However, if 'Try' does not work, it will skip to the the 'except' and run the code inside if that block instead. Try and except pair together. 
+    2. How Try/Except differs from If/Else: If/Else doesn't run the code inside of them if their attached conditional does pass. As claude put is, "checks a condition BEFORE acting". With Try/Except, there does not need to be a conditional attached to it. 'Try' will run the code associated with it, and if it doesn't work, it will go to the 'Except" actions. As Claude writes, "handles failures you can't predict by looking ahead". Try/Except requires one to try the code out to find an answer, while If/Else has a conditional to try before executing the code. (Side note: 'except' only runs if there was an error with 'try')
 
 ## 5. My fix
 What was wrong:
