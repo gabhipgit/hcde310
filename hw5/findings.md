@@ -49,12 +49,14 @@ What I changed: Using AI, I changed the params a bit in api.py.
 
 How I checked it works: I ran the pytest check that tested for the "No results found." message and this time it passed. I also tried it out for myself on the local server, inputting a random string for search, and saw a "No results found." message as well. 
 
-Commit before: (hash)  Commit after: (hash)
+Commit before: (69e6a5814fb70d5945be7cce57e143cddca1e959)  Commit after: (e0b7cbf19432bafcfb2b64525d1cffe3181cb114)
 
 ## 6. Can we ship it? (100–150 words)
-Yes or no, and why:
+Yes or no, and why: 
+No, while we can ship this app tomorrow, I don't think we should. Even though this app is usable and someone could find art by an artist with this search, it is pretty bare bones and basic. Why would people want to use this app when Google exists. Also, at this current moment, Google would probably have a better looking/formatted results page than our app. Our's looks like a literal list, Google's results have the artworks in a table format, but highlighting the images over the titles, and other details. If we were to try and ship this with a goal of people actually wanting to use this app over other search engines (like Google) we'd need to better our app's design, and find a way to implement features that would make our art searching app stand out. 
 
-One thing my HW4 does better:
-One thing the AI's app does better:
+One thing my HW4 does better: HW4 is better at making sure more checks are taken care of, and also did a better job at helping me understand all the different components and files that go into making an app/website. Since a lot of app, api, and templates were made by me last time, I really had to understand what each file did, and how the code worked. Also, in HW 4, I really made it a point to test different checks, even though it was without pytest telling me how many passed/failed, it did feel like more of an effort was put in HW4 to make sure common errors were properly taken care of.HW 4 also checked for missing fields, and either changed it to "Unknown" or dropped the artwork completely from the returned artworks data. I'm not sure if AI's app does the same, since I didn't focus any of my tests this tine on checking missing fields.  
+
+One thing the AI's app does better: AI's app did a better job a being more efficient overall. The app itself was made in minutes, maybe even seconds. I got to spend less time making the actual product and more time working on refining/debugging it. Also with the pytests, I got to check if things were functioning properly faster. I didn't have to manually look for messages/outputs, running pytest would allow me to see passes/fails easier. After pointing out the error for random input search, it had a more accurate fix compared to HW4. While HW4 still get's the "No results" message, it still kept in results with similar titles to the artists name, not just work by the artist name. AI's app, only keeps artworks if it's artist title matches the user input. 
 
 AI use goes in `ai_use.md` (the five points on the AI Use Card).
